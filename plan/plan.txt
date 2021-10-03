@@ -1,0 +1,67 @@
+Planning for Holiday Manager Assessment
+
+
+
+General Flow
+----------
+0. Load inital JSON. Scrape data from website using Beautiful Soup and load additional data into objects
+1. Display menu. While the application is active, continue to display the following options:
+    a.add a holiday
+    b.remove a holiday
+    c.save holiday list
+    d.view holidays
+    e.quit
+2. When the quit option is selected, prompt user to confirm their choice. If confirmed, end the menu loop and terminate the program.
+    
+
+I will implement each of these menu options with a separate helper function. The initial loading process will also be performed with a helper function.
+
+Holiday class
+---------
+name: str
+date: datetime.date
+-----
+__str__ -- displays name and date in desired format
+-method to turn into dictionary
+
+Data loading process
+-------------
+1) Open the initial JSON file and save each entry into the program as an object. Store the objects together in an object list.
+2) Scrape the data from the holidays website, saving holiday names and dates into the program as objects only if they have fixed dates.
+
+Add a holiday
+--------
+1) prompt user to input holiday name and holiday date
+2) if the date is valid, save the name and date into the program as an object in the object list.
+
+delete a holiday
+----
+1) prompt the user for a holiday name.
+2) if the holiday is in the object list, delete that holiday from the list. 
+    using a separate decorator function: print out a message once the deletion is complete
+
+
+view holiday list
+----------
+1) Prompt user to choose a week and year.
+2) If the user chooses the current week, send an api request to get a weather forecast. 
+3) Use a lambda expression to find the appropriate days of the week. Display the dates and names of the holidays that fall into this range of dates. If it's the current week, display the forecast for every day of the week using the gathered api information.
+    idea: use date.strftime('%V') to get week number. Use the filter(lambda) function to choose only dates with appropriate number. (Note: the python datetime module has week 1 -53, not 1-52, with week 53 going through until Jan 4, regardless of how many days that may include -- this will either need to be reflected in the UI, or I'll have to make a special case exception in the code.)
+    
+save holiday list
+--------
+1) Prompt user for confirmation that they want to save the list.
+2) loop through the object list to create a dictionary that can be saved in json form
+3) open a file, write and save the data to the file as a json, close the file
+
+questions yet to be answered:
+-where should I get the weather data from?
+ANSWER: open weather API
+
+Notes:
+This project will go in a github repository. I will include a readme, the code, and any other supporting files.
+DONT FORGET TO ADD TRY AND EXCEPT AROUND BLOCKS WITH WRITES AND HTTP REQUESTS
+The data needs to include data from 2020, 2021, 2022, 2023, 2024
+
+
+
